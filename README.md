@@ -1,69 +1,58 @@
-# Week 6 – Initial Dashboard UI (Streamlit)
+# Week 7 – Store Logs in SQLite & Basic Query
 
-## 🎯 Objective
+## Objective
 
-This week, you'll begin building a simple **web-based dashboard** for your data center monitor using **Streamlit**.  
-You will read system metrics from `log.csv` and display them in a dashboard format with tables and charts.
+This week, you will migrate your system monitor from CSV to a **SQLite database**.  
+SQLite allows structured data storage and retrieval using SQL queries.
 
 ---
 
-## 🧠 Reminder: Where does `log.csv` come from?
+## Tasks
 
-Your `log.csv` file should already exist from **Week 4 or Week 5**.  
-It contains fields like:  
-`Timestamp, CPU, Memory, Disk, Ping_Status, Ping_ms`
+1. Create a new SQLite database called `log.db`
+2. Create a table `system_log` with the following columns:
+   - id (INTEGER, auto-increment)
+   - timestamp (TEXT)
+   - cpu (REAL)
+   - memory (REAL)
+   - disk (REAL)
+   - ping_status (TEXT)
+   - ping_ms (REAL)
+3. Modify your code to:
+   - Insert 5 new log entries (one every 10 seconds)
+   - Print the last 5 records from the database
 
-If you **don’t have one**, you can generate it by re-running your previous logger script (e.g., from Week 5):
+---
 
-``bash
-python main.py
+## Instructions
 
-This will log 5 entries with system info and create log.csv.
+- Use `sqlite3` to connect and execute SQL commands
+- You can use your previous `ping_host()` and `psutil` code from Week 5
+- Use `print()` to display logs in the terminal
 
-Alternatively, you can use the example below.
+---
 
-⸻
+## Example Output
 
-🧪 Sample log.csv (Optional)
+Logged: ('2025-10-21 14:00:00', 17.3, 41.2, 58.9, 'UP', 22.1)
+Logged: ('2025-10-21 14:00:10', 19.1, 42.4, 59.0, 'UP', 21.3)
+...
+Last 5 entries:
+(21, '2025-10-21 14:00:00', 17.3, 41.2, 58.9, 'UP', 22.1)
+(22, '2025-10-21 14:00:10', 19.1, 42.4, 59.0, 'UP', 21.3)
 
-If needed, copy the following and save it as log.csv in the same folder:
+---
 
-Timestamp,CPU,Memory,Disk,Ping_Status,Ping_ms
+## Submission Checklist
 
-2025-10-01 12:00:00,15.2,40.1,58.9,UP,22.5
+- [ ] `main.py` with all TODOs completed  
+- [ ] `log.db` created successfully  
+- [ ] Screenshot showing last 5 entries in terminal  
+- [ ] Code committed and pushed to GitHub
 
-2025-10-01 12:00:10,18.3,42.0,59.1,UP,20.8
+---
 
-2025-10-01 12:00:20,19.5,43.2,59.4,UP,19.7
+## Bonus (Optional)
 
-2025-10-01 12:00:30,22.0,44.5,59.6,DOWN,-1
-
-2025-10-01 12:00:40,21.1,44.2,59.3,UP,21.2
-
-
-⸻
-
-✅ Tasks
-	1.	Create a new file app.py using Streamlit.
-	2.	Load log.csv and:
-	•	Show the latest 5 entries as a table
-	•	Plot line charts for CPU, Memory, Disk
-	•	Display a warning if file is missing
-	3.	Run the dashboard with:
-
-streamlit run app.py
-
-
-⸻
-
-✅ Submission Checklist
-	•	app.py shows table + charts from log.csv
-	•	requirements.txt includes streamlit and pandas
-	•	Screenshot of your dashboard
-	•	All files committed and pushed to GitHub
-
-⸻
-
-💡 Bonus (Optional)
-	•	Add sidebar filters or search
-	•	Highlight Ping_Status with colors
+- Add a query function to filter by Ping_Status (e.g., only show “DOWN”)
+- Count total records and display at the end
