@@ -35,10 +35,14 @@ SQLite allows structured data storage and retrieval using SQL queries.
 ## Example Output
 
 Logged: ('2025-10-21 14:00:00', 17.3, 41.2, 58.9, 'UP', 22.1)
+
 Logged: ('2025-10-21 14:00:10', 19.1, 42.4, 59.0, 'UP', 21.3)
+
 ...
 Last 5 entries:
+
 (21, '2025-10-21 14:00:00', 17.3, 41.2, 58.9, 'UP', 22.1)
+
 (22, '2025-10-21 14:00:10', 19.1, 42.4, 59.0, 'UP', 21.3)
 
 ---
